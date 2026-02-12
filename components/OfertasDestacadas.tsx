@@ -1,7 +1,9 @@
 import React from 'react'
+import { useStore } from '../store/products.state'
 
 function OfertasDestacadas(props: any) {
     const {styles, featured} = props
+    const ofertas: any = useStore((state:any) => state.ofertas)
   return (
               <article className={styles.sidePanel}>
             <header className={styles.panelHeader}>
@@ -14,14 +16,14 @@ function OfertasDestacadas(props: any) {
               <img src="./iphone.png" className="promoCard-img"/>
             </div>
             <div className={styles.list}>
-              {featured.map((item:any) => (
-                <div key={item} className={styles.row}>
-                  <span className={styles.thumb} />
+              {ofertas.map((item:any) => (
+                <div key={item.nombre} className={styles.row}>
+                  <img src={item.img} className={styles.thumb}/>
                   <div>
-                    <strong>{item}</strong>
-                    <p>Top selling product</p>
+                    <strong>{item.nombre}</strong>
+                    <p>{item.categoria}</p>
                   </div>
-                  <b>$99.00</b>
+                  <b>Q{item.precio}</b>
                 </div>
               ))}
             </div>
